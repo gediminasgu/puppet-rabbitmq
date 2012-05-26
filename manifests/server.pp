@@ -30,4 +30,9 @@ class rabbitmq::server {
     enable  => true,
     require => Package[$rabbitmq::package],
   }
+  
+  puppi::check { 'RabbitMQ-Proc-Check':
+    command => "check_procs -c 5:5 -u rabbitmq",
+    hostwide => 'yes',
+  }
 }
