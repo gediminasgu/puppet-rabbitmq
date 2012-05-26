@@ -35,4 +35,9 @@ class rabbitmq::server {
     command => "check_procs -c 5:5 -u rabbitmq",
     hostwide => 'yes',
   }
+
+  puppi::check { 'RabbitMQ-port-Check':
+    command => "check_tcp -p 5672 -r critical",
+    hostwide => 'yes',
+  }
 }
